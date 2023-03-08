@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     res.json(userData);
   } catch (err) {
     console.log("Error fetching users");
-    res.sendStatus(500).json(err);
+    res.status(500).json(err);
   }
 });
 
@@ -21,7 +21,6 @@ router.post("/", async (req, res) => {
 
     res.json(newUser);
   } catch (err) {
-    console.log("Error");
     res.status(500).json(err);
   }
 });

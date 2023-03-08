@@ -1,11 +1,25 @@
 const router = require("express").Router();
+
+const { Post } = require("../../models");
+
 router.get("/", async (req, res) => {
   try {
-    // get posts
-    console.log("Hello postRoutes!");
-    res.send(200);
-  } catch {
-    res.send(err);
+    const postData = await Post.findAll({});
+    res.json(postData);
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+router.post("/", async (req, res) => {
+  try {
+    const newPost = await Post.create({
+      ...req.body,
+    });
+
+    res.json(newPost);
+  } catch (err) {
+    res.status(500).json(err);
   }
 });
 
